@@ -33,7 +33,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQUENCE")
 	@SequenceGenerator(name = "USER_SEQUENCE", sequenceName = "USERS_SEQ")
 	@Column(name = "USER_ID")
-	private long id;
+	private int id;
 
 	@NotEmpty
 	@Column(name = "USERNAME", unique = true, nullable = false)
@@ -64,7 +64,7 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(long id, @NotEmpty String userName, @NotEmpty String password, @NotEmpty String firstName,
+	public User(int id, @NotEmpty String userName, @NotEmpty String password, @NotEmpty String firstName,
 			@NotEmpty String lastName, @NotEmpty String email, @NotEmpty Set<UserProfile> userProfiles) {
 		super();
 		this.id = id;
@@ -76,11 +76,11 @@ public class User implements Serializable {
 		this.userProfiles = userProfiles;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -136,7 +136,7 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + id;
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}

@@ -26,7 +26,7 @@ public class UserProfile implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_PROFILES_SEQUENCE")
 	@SequenceGenerator(name = "USER_PROFILES_SEQUENCE", sequenceName = "USER_PROFILES_SEQ")
 	@Column(name = "USER_PROFILE_ID")
-	private long id;
+	private int id;
 
 	@Column(name = "TYPE", length = 15, unique = true, nullable = false)
 	private String type = UserProfileType.USER.getUserProfileType();
@@ -34,17 +34,17 @@ public class UserProfile implements Serializable {
 	public UserProfile() {
 	}
 
-	public UserProfile(long id, String type) {
+	public UserProfile(int id, String type) {
 		super();
 		this.id = id;
 		this.type = type;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -60,7 +60,7 @@ public class UserProfile implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + id;
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
